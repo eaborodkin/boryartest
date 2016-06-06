@@ -1,0 +1,19 @@
+{
+    "name": "eaborodkin/boryartest",
+    "authors": [
+        {
+            "name": "Alex Yarygin",
+            "email": "yarygin.alexander@inbox.ru"
+        },
+        {
+            "name": "Eugene Borodkin",
+            "email": "dont@know.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BorYar\\": "app/"
+        }
+    }
+}
