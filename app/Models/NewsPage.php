@@ -5,21 +5,26 @@ use BorYar\Interfaces\Pages\NewsPage as INewsPage;
 
 class NewsPage extends BasePage implements INewsPage
 {
-    protected $articles;
+    protected $articles = null;
 
     public function tableName()
     {
         return "news";
     }
 
+    protected function primaryKey()
+    {
+        return 'id';
+    }
+
     public function __construct()
     {
-        $this->articles = $this->all();
+
     }
 
     public function getNews()
     {
-        return $this->articles;
+        return is_null($this->articles) ? $this->all() : $this->articles;
     }
 
     public function getType()

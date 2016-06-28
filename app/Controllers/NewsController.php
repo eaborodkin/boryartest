@@ -15,9 +15,19 @@ class NewsController
 
     public function showList()
     {
-//        $news = $this->news_page->getNews();
+        $news = $this->news_page->getNews();
         $view = new View(APP_ROOT . '/templates/news.php', [
-            'title' => "NEWS",
+            'title' => print_r($news, true),
+        ]);
+        $view->render();
+    }
+
+    public function showArticle($id)
+    {
+        $article = $this->news_page->find($id);
+        $title = isset($article['name']) ? $article['name'] : "no";
+        $view = new View(APP_ROOT . '/templates/news.php', [
+            'title' => $title,
         ]);
         $view->render();
     }

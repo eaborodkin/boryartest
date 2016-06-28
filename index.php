@@ -6,4 +6,4 @@ use \App\Controllers\NewsController;
 define('APP_ROOT', __DIR__);
 
 $controller = new NewsController;
-$controller->showList();
+$controller->showArticle(1);

@@ -22,9 +22,10 @@ interface Model
     /**
      * Get items list by conditions
      * @param array $conditions - array with filters
-     * @param null $limit - max count of filtered items
+     * @param string $order_by - sort param for items
+     * @param int $limit - max count of filtered items
      * @param int $offset - offset in result
      * @return mixed
      */
-    public function filter(array $conditions, $limit = null, $offset = 0);
+    public function filter(array $conditions, $order_by = null, $limit = null, $offset = 0);
 }

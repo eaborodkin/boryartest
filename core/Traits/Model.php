@@ -13,6 +13,8 @@ trait Model
 
     abstract protected function tableName();
 
+    abstract protected function primaryKey();
+
     protected function connect()
     {
         $dsn = 'mysql:dbname=boryar_test;host=127.0.0.1';
@@ -28,16 +30,32 @@ trait Model
 
     public function find($id)
     {
-        // TODO: Implement find() method.
+        $found = $this->filter([sprintf("%s = '%d'", $this->primaryKey(), (int)$id)]);
+        $result = [];
+        if (count($found) > 0) {
+            $result = $found[0];
+        }
+        return $result;
     }
 
     public function all($order_by = null, $limit = null, $offset = 0)
+    {
+        return $this->filter([], $order_by, $limit, $offset);
+    }
+
+    public function filter(array $conditions, $order_by = null, $limit = null, $offset = 0)
     {
         if (is_null(self::$dbh)) {
             $this->connect();
         }
         $table = $this->tableName();
         $sql = "SELECT * FROM $table";
+
+        $where = "";
+        foreach ($conditions as $cond) {
+            $where .= (!$where ? " WHERE " : " AND ") . " $cond";
+        }
+        $sql .= $where;
         if (!is_null($order_by)) {
             $sql .= " ORDER BY $order_by";
         }
@@ -48,14 +66,9 @@ trait Model
         $result = [];
 
         foreach (self::$dbh->query($sql) as $row) {
-            $result = $row;
+            $result[] = $row;
         }
         return $result;
-    }
-
-    public function filter(array $conditions, $limit = null, $offset = 0)
-    {
-        // TODO: Implement filter() method.
     }
 
 }

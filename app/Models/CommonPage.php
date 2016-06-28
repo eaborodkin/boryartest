@@ -7,6 +7,11 @@ class CommonPage extends BasePage implements ICommonPage
 {
     protected $text;
 
+    protected function primaryKey()
+    {
+        return 'id';
+    }
+
     protected function tableName()
     {
         return "pages";
