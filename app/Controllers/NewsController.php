@@ -2,9 +2,10 @@
 namespace App\Controllers;
 
 use App\Models\NewsPage;
+use BorYar\Interfaces\Controller;
 use BorYar\Views\TemplateView as View;
 
-class NewsController
+class NewsController implements Controller
 {
     private $news_page;
 
@@ -26,7 +27,7 @@ class NewsController
     {
         $article = $this->news_page->find($id);
         $title = isset($article['name']) ? $article['name'] : "no";
-        $view = new View(APP_ROOT . '/templates/news.php', [
+        $view = new View(APP_ROOT . '/templates/article.php', [
             'title' => $title,
         ]);
         $view->render();

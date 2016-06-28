@@ -1,9 +1,11 @@
 <?php
 require_once "vendor/autoload.php";
 
-use \App\Controllers\NewsController;
+use \BorYar\Factories\ControllerFactory;
+use App\Controllers\PageController;
 
 define('APP_ROOT', __DIR__);
 
-$controller = new NewsController;
-$controller->showArticle(1);
+$controller_factory = new ControllerFactory();
+$controller = $controller_factory->getController(PageController::class);
+$controller->showPage(1);
