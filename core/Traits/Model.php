@@ -1,6 +1,9 @@
 <?php
 namespace BorYar\Traits;
 
+use BorYar\Exceptions\Database\CouldNotConnectException;
+use BorYar\Exceptions\Database\NotFoundException;
+use BorYar\Exceptions\Database\QueryErrorException;
 use PDO;
 use PDOException;
 
@@ -24,7 +27,7 @@ trait Model
         try {
             self::$dbh = new PDO($dsn, $user, $password);
         } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
+            throw new CouldNotConnectException('Connection failed: ' . $e->getMessage());
         }
     }
 
@@ -34,6 +37,8 @@ trait Model
         $result = [];
         if (count($found) > 0) {
             $result = $found[0];
+        } else {
+            throw new NotFoundException;
         }
         return $result;
     }
@@ -65,8 +70,12 @@ trait Model
 
         $result = [];
 
-        foreach (self::$dbh->query($sql) as $row) {
-            $result[] = $row;
+        try {
+            foreach (self::$dbh->query($sql) as $row) {
+                $result[] = $row;
+            }
+        } catch (PDOException $ex) {
+            throw new QueryErrorException;
         }
         return $result;
     }

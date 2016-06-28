@@ -25,11 +25,15 @@ class NewsController implements Controller
 
     public function showArticle($id)
     {
-        $article = $this->news_page->find($id);
-        $title = isset($article['name']) ? $article['name'] : "no";
-        $view = new View(APP_ROOT . '/templates/article.php', [
-            'title' => $title,
-        ]);
+        try {
+            $article = $this->news_page->find($id);
+            $title = isset($article['name']) ? $article['name'] : "no";
+            $view = new View(APP_ROOT . '/templates/article.php', [
+                'title' => $title,
+            ]);
+        } catch (NotFoundException $ex) {
+            $view = new TemplateView(APP_ROOT . '/templates/404.php');
+        }
         $view->render();
     }
 
