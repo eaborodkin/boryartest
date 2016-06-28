@@ -1,7 +1,7 @@
 <?php
 namespace BorYar\Interfaces\Pages;
 
-interface NewsPage extends BasePage
+interface NewsPage extends Page
 {
     /**
      * get news list

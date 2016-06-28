@@ -1,7 +1,7 @@
 <?php
 namespace BorYar\Interfaces\Pages;
 
-interface Page extends BasePage
+interface CommonPage extends Page
 {
     /**
      * @return string

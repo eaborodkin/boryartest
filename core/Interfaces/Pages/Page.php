@@ -1,7 +1,7 @@
 <?php
 namespace BorYar\Interfaces\Pages;
 
-interface BasePage
+interface Page
 {
     /**
      * @return string (page|news)

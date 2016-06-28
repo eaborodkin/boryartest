@@ -1,7 +1,9 @@
 <?php
 require_once "vendor/autoload.php";
 
-use \BorYar\Controllers\BaseController;
+use \App\Controllers\NewsController;
 
-$controller = new BaseController;
-$controller->phpinfo();
+define('APP_ROOT', __DIR__);
+
+$controller = new NewsController;
+$controller->showList();

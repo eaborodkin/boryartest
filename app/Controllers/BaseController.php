@@ -1,5 +1,5 @@
 <?php
-namespace BorYar\Controllers;
+namespace App\Controllers;
 
 class BaseController
 {
@@ -8,4 +8,5 @@ class BaseController
         echo "Current PHP Settings";
         phpinfo();
     }
+
 }

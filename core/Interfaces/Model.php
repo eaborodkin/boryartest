@@ -12,11 +12,12 @@ interface Model
 
     /**
      * Get items list
-     * @param $limit - max count of items
-     * @param $offset - offset in result
+     * @param string $order_by - sort param for items
+     * @param int $limit - max count of items
+     * @param int $offset - offset in result
      * @return mixed
      */
-    public function all($limit = null, $offset = 0);
+    public function all($order_by = null, $limit = null, $offset = 0);
 
     /**
      * Get items list by conditions

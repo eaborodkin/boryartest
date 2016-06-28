@@ -1,18 +1,25 @@
 <?php
-namespace BorYar\Models;
+namespace App\Models;
 
-class NewsPage extends BasePage
+use BorYar\Interfaces\Pages\NewsPage as INewsPage;
+
+class NewsPage extends BasePage implements INewsPage
 {
     protected $articles;
 
-    public function getNews()
+    public function tableName()
     {
-        return $this->articles;
+        return "news";
     }
 
     public function __construct()
     {
-        
+        $this->articles = $this->all();
+    }
+
+    public function getNews()
+    {
+        return $this->articles;
     }
 
     public function getType()

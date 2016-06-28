@@ -1,10 +1,13 @@
 <?php
-namespace BorYar\Models;
+namespace App\Models;
 
-use BorYar\Interfaces\Pages\BasePage as IBasePage;
+use BorYar\Interfaces\Pages\Page as IPage;
+use BorYar\Interfaces\Model as IModel;
+use BorYar\Traits\Model as ModelTrait;
 
-abstract class BasePage implements IBasePage
+abstract class BasePage implements IPage, IModel
 {
+    use ModelTrait;
 
     protected $id;
     protected $name;
